@@ -1,12 +1,331 @@
+<img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD..." alt="Hanson Fire" class="w-24 float-right" />
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Hanson Fire EMS - Refusal Form</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>EMS Refusal of Medical Care & Transport Form</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" />
+<style>
+  /* Basic responsive form styling */
+  body { font-family: Arial, sans-serif; padding: 20px; max-width: 900px; margin: auto; background:#f3f4f6 }
+  .input { width:100%; padding:10px; border-radius:6px; border:1px solid #d1d5db; margin-top:6px }
+  label { font-weight:600 }
+  .card { background:white; padding:24px; border-radius:12px; box-shadow: 0 6px 18px rgba(0,0,0,0.06) }
+  @media (max-width:600px){ body{padding:12px} }
+  canvas { touch-action: none }
+</style>
 </head>
 <body>
-  <h1>Hanson Fire EMS Refusal Form</h1>
-  <p>The full form will go here.</p>
+  <div class="card">
+    <div class="flex items-center justify-between">
+      <h1 class="text-2xl font-bold">EMS Refusal of Medical Care & Transport Form</h1>
+    </div>
+
+    <form id="emsForm" class="mt-6 space-y-6">
+      <!-- Patient Info -->
+      <section>
+        <h2 class="text-lg font-semibold">1. Patient Identification & Incident Information</h2>
+        <div class="grid grid-cols-2 gap-4 mt-2">
+          <div>
+            <label>Patient Name</label>
+            <input name="patient_name" class="input" />
+          </div>
+          <div>
+            <label>DOB / Age</label>
+            <input name="dob_age" class="input" />
+          </div>
+          <div>
+            <label>Address</label>
+            <input name="address" class="input" />
+          </div>
+          <div>
+            <label>Phone</label>
+            <input name="phone" class="input" />
+          </div>
+          <div>
+            <label>Incident Date</label>
+            <input name="incident_date" type="date" class="input" />
+          </div>
+          <div>
+            <label>Time</label>
+            <input name="incident_time" type="time" class="input" />
+          </div>
+          <div>
+            <label>Location</label>
+            <input name="incident_location" class="input" />
+          </div>
+          <div>
+            <label>EMS Agency / Unit</label>
+            <input name="ems_unit" class="input" />
+          </div>
+          <div>
+            <label>Provider Name(s)</label>
+            <input name="provider_names" class="input" />
+          </div>
+          <div>
+            <label>Run/Call Number</label>
+            <input name="run_number" class="input" />
+          </div>
+        </div>
+      </section>
+
+      <!-- Assessment -->
+      <section>
+        <h2 class="text-lg font-semibold">2. Patient Assessment Findings</h2>
+        <label class="block mt-2">Mental Status / Orientation</label>
+        <div class="grid grid-cols-3 gap-2 mt-1">
+          <label><input type="checkbox" name="ms" value="A&amp;O x4" /> A&amp;O x4</label>
+          <label><input type="checkbox" name="ms" value="A&amp;O x3" /> A&amp;O x3</label>
+          <label><input type="checkbox" name="ms" value="A&amp;O x2" /> A&amp;O x2</label>
+          <label><input type="checkbox" name="ms" value="A&amp;O x1" /> A&amp;O x1</label>
+          <label><input type="checkbox" name="ms" value="Disoriented" /> Disoriented</label>
+          <label><input type="checkbox" name="ms" value="Altered" /> Altered</label>
+        </div>
+
+        <label class="block mt-4">Vital Signs</label>
+        <div class="grid grid-cols-3 gap-4 mt-1">
+          <div><label>BP</label><input name="BP" class="input" /></div>
+          <div><label>Pulse</label><input name="Pulse" class="input" /></div>
+          <div><label>Resp</label><input name="Resp" class="input" /></div>
+          <div><label>SpO2</label><input name="SpO2" class="input" /></div>
+          <div><label>Glucose</label><input name="Glucose" class="input" /></div>
+          <div><label>Temp</label><input name="Temp" class="input" /></div>
+          <div class="col-span-3 mt-2"><label>GCS</label><input name="GCS" class="input" /></div>
+        </div>
+
+        <label class="block mt-4">Additional Exam Findings</label>
+        <textarea name="additional_exam" class="input h-24"></textarea>
+      </section>
+
+      <!-- Risks -->
+      <section>
+        <h2 class="text-lg font-semibold">3. Explanation of Recommended Treatment &amp; Risks</h2>
+        <div class="grid grid-cols-2 gap-2 mt-2">
+          <label><input type="checkbox" name="explained" value="Physical exam" /> Physical exam</label>
+          <label><input type="checkbox" name="explained" value="Vital signs" /> Vital signs</label>
+          <label><input type="checkbox" name="explained" value="Medical interventions" /> Medical interventions</label>
+          <label><input type="checkbox" name="explained" value="Transport to ED" /> Transport to ED</label>
+        </div>
+        <p class="mt-3 text-sm text-gray-700">Risks explained include worsening condition, disability, death, delayed care.</p>
+        <div class="mt-2">
+          <label>Patient Understands Risks</label>
+          <div><label><input type="radio" name="understands" value="Yes" checked /> Yes</label>
+          <label class="ml-4"><input type="radio" name="understands" value="No" /> No</label></div>
+        </div>
+      </section>
+
+      <!-- Refusal -->
+      <section>
+        <h2 class="text-lg font-semibold">4. Services Being Refused</h2>
+        <div class="grid grid-cols-2 gap-2 mt-2">
+          <label><input type="checkbox" name="refused" value="Assessment" /> Assessment</label>
+          <label><input type="checkbox" name="refused" value="Treatment" /> Treatment</label>
+          <label><input type="checkbox" name="refused" value="Transport" /> Transport</label>
+          <label><input type="checkbox" name="refused" value="High-risk recommendation" /> High-risk recommendation</label>
+        </div>
+        <label class="block mt-2">Other</label>
+        <input name="refuse_other" class="input" />
+      </section>
+
+      <!-- Acknowledgment -->
+      <section>
+        <h2 class="text-lg font-semibold">5. Patient / Guardian Acknowledgment</h2>
+        <div class="grid grid-cols-2 gap-4 mt-2">
+          <div>
+            <label>Name</label>
+            <input name="pg_name" class="input" />
+          </div>
+          <div>
+            <label>Date</label>
+            <input type="date" name="pg_date" class="input" />
+          </div>
+          <div>
+            <label>Signature (type full name)</label>
+            <input name="pg_signature" class="input" />
+            <label class="mt-2 block">Draw Signature</label>
+            <canvas id="pg_sign" class="border w-full" style="height:140px;background:white"></canvas>
+            <div class="mt-2"><button type="button" onclick="pgPad.clear()" class="px-2 py-1 rounded bg-gray-200">Clear</button></div>
+          </div>
+          <div>
+            <label>Relationship</label>
+            <input name="pg_relationship" class="input" />
+          </div>
+        </div>
+      </section>
+
+      <!-- Witness -->
+      <section>
+        <h2 class="text-lg font-semibold">6. Witness Signature</h2>
+        <div class="grid grid-cols-2 gap-4 mt-2">
+          <div>
+            <label>Name</label>
+            <input name="wit_name" class="input" />
+          </div>
+          <div>
+            <label>Date</label>
+            <input type="date" name="wit_date" class="input" />
+          </div>
+          <div>
+            <label>Signature (type full name)</label>
+            <input name="wit_signature" class="input" />
+            <label class="mt-2 block">Draw Signature</label>
+            <canvas id="wit_sign" class="border w-full" style="height:140px;background:white"></canvas>
+            <div class="mt-2"><button type="button" onclick="witPad.clear()" class="px-2 py-1 rounded bg-gray-200">Clear</button></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Provider -->
+      <section>
+        <h2 class="text-lg font-semibold">7. EMS Provider Statement</h2>
+        <div class="grid grid-cols-2 gap-4 mt-2">
+          <div>
+            <label>Name</label>
+            <input name="prov_name" class="input" />
+          </div>
+          <div>
+            <label>Date</label>
+            <input type="date" name="prov_date" class="input" />
+          </div>
+          <div>
+            <label>Signature (type full name)</label>
+            <input name="prov_signature" class="input" />
+            <label class="mt-2 block">Draw Signature</label>
+            <canvas id="prov_sign" class="border w-full" style="height:140px;background:white"></canvas>
+            <div class="mt-2"><button type="button" onclick="provPad.clear()" class="px-2 py-1 rounded bg-gray-200">Clear</button></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Narrative -->
+      <section>
+        <h2 class="text-lg font-semibold">Narrative / Documentation</h2>
+        <textarea name="narrative" class="input h-32 mt-2"></textarea>
+      </section>
+
+      <!-- Submit -->
+      <div>
+        <button type="button" id="submitBtn" class="w-full bg-blue-600 text-white py-3 rounded-lg text-lg font-semibold">Submit Form</button>
+      </div>
+
+    </form>
+  </div>
+
+  <!-- Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.1.7/dist/signature_pad.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <script>
+  // Initialize signature pads
+  const pgPad = new SignaturePad(document.getElementById('pg_sign'));
+  const witPad = new SignaturePad(document.getElementById('wit_sign'));
+  const provPad = new SignaturePad(document.getElementById('prov_sign'));
+
+  // Helper to convert Blob to base64 string
+  function blobToBase64(blob) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onloadend = () => resolve(reader.result.split(',')[1]);
+      reader.onerror = reject;
+      reader.readAsDataURL(blob);
+    });
+  }
+
+  async function generatePdfBlob(formDataObj) {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF({ unit: 'pt', format: 'letter' });
+    const margin = 40;
+    let y = 40;
+    doc.setFontSize(14);
+    doc.text('EMS Refusal of Medical Care & Transport Form', margin, y);
+    y += 20;
+    doc.setFontSize(10);
+
+    for (const [key, value] of Object.entries(formDataObj)) {
+      const lines = doc.splitTextToSize(`${key}: ${value}`, 500);
+      doc.text(lines, margin, y);
+      y += lines.length * 12;
+      if (y > 700) { doc.addPage(); y = 40; }
+    }
+
+    // Add signatures as images on a new page
+    doc.addPage();
+    doc.text('Signatures', margin, 40);
+    const x = margin, sigW = 180, sigH = 80;
+    if (formDataObj._pgSigImage) { doc.addImage(formDataObj._pgSigImage, 'PNG', x, 60, sigW, sigH); doc.text('Patient/Guardian', x, 60 + sigH + 12); }
+    if (formDataObj._witSigImage) { doc.addImage(formDataObj._witSigImage, 'PNG', x, 160, sigW, sigH); doc.text('Witness', x, 160 + sigH + 12); }
+    if (formDataObj._provSigImage) { doc.addImage(formDataObj._provSigImage, 'PNG', x, 260, sigW, sigH); doc.text('Provider', x, 260 + sigH + 12); }
+
+    const blob = doc.output('blob');
+    return blob;
+  }
+
+  function collectFormData() {
+    const form = document.getElementById('emsForm');
+    const fd = new FormData(form);
+    const obj = {};
+    for (const [k, v] of fd.entries()) {
+      // handle multiple-checkbox fields
+      if (obj[k]) {
+        if (Array.isArray(obj[k])) obj[k].push(v); else obj[k] = [obj[k], v];
+      } else obj[k] = v;
+    }
+    // capture signature images as dataURLs (PNG)
+    obj._pgSigImage = pgPad.isEmpty() ? null : pgPad.toDataURL('image/png');
+    obj._witSigImage = witPad.isEmpty() ? null : witPad.toDataURL('image/png');
+    obj._provSigImage = provPad.isEmpty() ? null : provPad.toDataURL('image/png');
+    return obj;
+  }
+
+  async function submitFormHandler() {
+    try {
+      const sendButton = document.getElementById('submitBtn');
+      sendButton.disabled = true; sendButton.textContent = 'Submitting...';
+
+      const dataObj = collectFormData();
+      const pdfBlob = await generatePdfBlob(dataObj);
+      const pdfBase64 = await blobToBase64(pdfBlob);
+
+      // Prepare payload for EmailJS REST API
+      const payload = {
+        service_id: 'service_29tfekm',
+        template_id: 'template_7777w9f',
+        user_id: 'q0E8zJYxQwO-tPG7H',
+        template_params: {
+          to_email: 'cbarends@hanson-ma.gov',
+          form_subject: 'EMS Refusal Form Submission',
+          form_contents: JSON.stringify(dataObj, null, 2)
+        },
+        attachments: [
+          {
+            name: 'EMS_Refusal.pdf',
+            data: pdfBase64
+          }
+        ]
+      };
+
+      const res = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+
+      if (!res.ok) throw new Error('Email service returned an error');
+
+      alert('Form submitted and emailed successfully!');
+      document.getElementById('emsForm').reset();
+      pgPad.clear(); witPad.clear(); provPad.clear();
+    } catch (err) {
+      console.error(err);
+      alert('There was an error submitting the form. Please try again.');
+    } finally {
+      const sendButton = document.getElementById('submitBtn');
+      sendButton.disabled = false; sendButton.textContent = 'Submit Form';
+    }
+  }
+
+  document.getElementById('submitBtn').addEventListener('click', submitFormHandler);
+  </script>
 </body>
 </html>
