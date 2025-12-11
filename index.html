@@ -232,7 +232,7 @@
     out += nl + '----------------------------------------\n6. WITNESS\n----------------------------------------\n';
     out += s('Typed Name', d.wit_name||'') + s('Typed Signature', d.wit_signature||'') + s('Witness Date', d.wit_date||'');
     out += nl + '----------------------------------------\n7. PROVIDER\n----------------------------------------\n';
-    out += s('Typed Name', d.prov_name||'') + s('Typed Signature', d.prov_signature||'') + s('Provider Date', d.prov_date||'') + s(data.prov_signature_drawn || '') ;
+    out += s('Typed Name', d.prov_name||'') + s('Typed Signature', d.prov_signature||'') + s('Provider Date', d.prov_date||'');
     out += nl + '----------------------------------------\nNARRATIVE\n----------------------------------------\n';
     out += (d.narrative||'') + nl + nl;
     out += 'Signatures included below as images.' + nl;
